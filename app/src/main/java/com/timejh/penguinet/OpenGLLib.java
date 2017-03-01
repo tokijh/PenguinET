@@ -10,7 +10,7 @@ public class OpenGLLib {
         System.loadLibrary("gamesystem");
     }
 
-    public static native void nativeCreated();
+    public static native void nativeCreated(SaveManager saveManager);
 
     public static native void nativeChanged(int w, int h);
 

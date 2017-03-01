@@ -3,7 +3,6 @@
 //
 
 #include "GameSystem.h"
-#include "logger.h"
 
 void onSurfaceCreate()
 {

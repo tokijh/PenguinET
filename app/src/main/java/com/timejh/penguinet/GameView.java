@@ -21,6 +21,8 @@ public class GameView extends GLSurfaceView implements GLSurfaceView.Renderer {
 
     private static final int MAX_TOUCH_COUNT = 2;
 
+    private SaveManager saveManager;
+
     public GameView(Context context) {
         super(context);
         setEGLConfigChooser(8, 8, 8, 0, 16, 0);
@@ -28,6 +30,8 @@ public class GameView extends GLSurfaceView implements GLSurfaceView.Renderer {
         setRenderer(this);
         requestFocus();
         setFocusableInTouchMode(true);
+
+        saveManager = new SaveManager(context);
     }
 
     public void onDrawFrame(GL10 gl) {
@@ -39,7 +43,7 @@ public class GameView extends GLSurfaceView implements GLSurfaceView.Renderer {
     }
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        nativeCreated();
+        nativeCreated(saveManager);
     }
 
     @Override
