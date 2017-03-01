@@ -9,7 +9,7 @@
 
 void onSurfaceCreate();
 void onSurfaceChanged(int width, int height);
-void updateGameLoop();
-void onTouchEvent(int x, int y, int touchFlag);
+void onSurfaceUpdated();
+void onTouchEvent(int eventsCount, int **touchInfo);
 
 #endif //PENGUINET_GAMESYSTEM_H

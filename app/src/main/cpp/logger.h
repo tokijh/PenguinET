@@ -7,7 +7,7 @@
 
 #include <android/log.h>
 
-bool debug = true;
+static const bool debug = true;
 
 #define  LOG_TAG    "mainJNI"
 #define  LOGI(...)  if(debug)__android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)

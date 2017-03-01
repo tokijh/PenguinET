@@ -14,8 +14,8 @@ public class OpenGLLib {
 
     public static native void nativeChanged(int w, int h);
 
-    public static native void nativeUpdateGame();
+    public static native void nativeUpdated();
 
-    public static native void nativeOnTouchEvent(int x, int y, int touchFlag);
+    public static native void nativeOnTouchEvent(int touchEvent[][]);
 
 }
