@@ -10,12 +10,12 @@ public class OpenGLLib {
         System.loadLibrary("gamesystem");
     }
 
-    public static native void nativeCreated(SaveManager saveManager);
+    public static native void onCreated(SaveManager saveManager);
 
-    public static native void nativeChanged(int w, int h);
+    public static native void onChanged(int w, int h);
 
-    public static native void nativeUpdated();
+    public static native void onTouch(int touchEvent[][]);
 
-    public static native void nativeOnTouchEvent(int touchEvent[][]);
+    public static native void step();
 
 }

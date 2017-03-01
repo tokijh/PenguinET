@@ -1,29 +1,29 @@
 #include "main.h"
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeCreated(JNIEnv*  env, jobject obj, jobject storeManager);
-    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeChanged(JNIEnv* env, jobject thiz, jint w, jint h);
-    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeUpdated(JNIEnv* env, jobject obj);
-    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeOnTouchEvent(JNIEnv* env, jobject thiz, jobjectArray touchEvents);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject obj, jobject storeManager);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onChanged(JNIEnv* env, jobject thiz, jint w, jint h);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, jobject thiz, jobjectArray touchEvents);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_step(JNIEnv* env, jobject obj);
 };
 
-JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeCreated(JNIEnv*  env, jobject thiz, jobject storeManager)
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject thiz, jobject storeManager)
 {
     Save::init(env, storeManager);
     onSurfaceCreate();
 }
 
-JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeChanged(JNIEnv* env, jobject thiz, jint w, jint h)
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onChanged(JNIEnv* env, jobject thiz, jint w, jint h)
 {
     onSurfaceChanged(w, h);
 }
 
-JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeUpdated(JNIEnv* env, jobject thiz)
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_step(JNIEnv* env, jobject thiz)
 {
     onSurfaceUpdated();
 }
 
-JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_nativeOnTouchEvent(JNIEnv* env, jobject thiz, jobjectArray touchEvents)
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, jobject thiz, jobjectArray touchEvents)
 {
     jsize eventsCount = env->GetArrayLength(touchEvents);
 
