@@ -18,4 +18,7 @@ public class OpenGLLib {
 
     public static native void step();
 
+    public static native boolean stop();
+
+    public static native void destroy();
 }

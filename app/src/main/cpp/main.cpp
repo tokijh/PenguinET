@@ -5,6 +5,8 @@ extern "C" {
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onChanged(JNIEnv* env, jobject thiz, jint w, jint h);
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, jobject thiz, jobjectArray touchEvents);
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_step(JNIEnv* env, jobject obj);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_destroy(JNIEnv* env, jobject obj);
+    JNIEXPORT jboolean JNICALL Java_com_timejh_penguinet_OpenGLLib_stop(JNIEnv* env, jobject obj);
 };
 
 JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject thiz, jobject storeManager)
@@ -45,4 +47,14 @@ JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, 
     for(int i=0;i<eventsCount;i++)
         free(touchInfo[i]);
     free(touchInfo);
+}
+
+JNIEXPORT jboolean JNICALL Java_com_timejh_penguinet_OpenGLLib_stop(JNIEnv* env, jobject obj)
+{
+    return false;
+}
+
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_destroy(JNIEnv* env, jobject obj)
+{
+    LOGI("Destroy :: Free All Memorry");
 }
