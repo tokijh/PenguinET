@@ -3,6 +3,9 @@
 //
 
 #include "Save.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "logger.h"
 
 JavaVM* Save::javaVM = NULL;
 jobject Save::saveManager = NULL;
@@ -258,7 +261,7 @@ JNIEnv* Save::getJNIEnv(JavaVM* jvm)
 {
     JavaVMAttachArgs args;
     args.version = JNI_VERSION_1_6;
-    args.name = "PacmanNativeThread";
+    args.name = "TimejhNativeThread";
     args.group = NULL;
     JNIEnv *result;
     if (jvm->AttachCurrentThread(&result, &args) != JNI_OK) {

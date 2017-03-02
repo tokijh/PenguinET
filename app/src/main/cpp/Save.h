@@ -5,9 +5,8 @@
 #ifndef PENGUINET_SAVE_H
 #define PENGUINET_SAVE_H
 
-//#include <stdlib.h>
-//#include <stdio.h>
-#include "main.h"
+
+#include <jni.h>
 
 /**
  * 내용을 저장, 로드하기위한 클래스

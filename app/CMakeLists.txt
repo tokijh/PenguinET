@@ -17,7 +17,8 @@ endif (${ANDROID_PLATFORM_LEVEL} LESS 11)
 add_library(gamesystem SHARED
             src/main/cpp/main.cpp
             src/main/cpp/GameSystem.cpp
-            src/main/cpp/Save.cpp)
+            src/main/cpp/Save.cpp
+            )
 
 target_link_libraries(gamesystem
                       ${OPENGL_LIB}
