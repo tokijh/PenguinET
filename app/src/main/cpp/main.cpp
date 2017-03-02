@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, 
 
     onTouchEvent(eventsCount, touchInfo);
 
-    for(int i=0;i<eventsCount;i++)
+    for (int i = 0; i < eventsCount; i++)
         free(touchInfo[i]);
     free(touchInfo);
 }
