@@ -6,7 +6,7 @@
 #define PENGUINET_SHADER_H
 
 #include <stdlib.h>
-#include "logger.h"
+#include "../logger.h"
 
 static GLuint loadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);

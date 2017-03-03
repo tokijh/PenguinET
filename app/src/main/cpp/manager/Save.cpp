@@ -5,7 +5,7 @@
 #include "Save.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "logger.h"
+#include "../logger.h"
 
 JavaVM* Save::javaVM = NULL;
 jobject Save::saveManager = NULL;

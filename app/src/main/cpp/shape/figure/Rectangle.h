@@ -6,8 +6,8 @@
 #define PENGUINET_RECTANGLE_H
 
 #include <GLES2/gl2.h>
-#include "Shape.h"
-#include "AssetsShaderManager.h"
+#include "../Shape.h"
+#include "../../manager/AssetsShaderManager.h"
 
 
 class Rectangle : public Shape {

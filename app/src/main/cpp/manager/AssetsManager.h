@@ -10,7 +10,7 @@
 #include <jni.h>
 #include <stdlib.h>
 
-#include "logger.h"
+#include "../logger.h"
 
 /**
  * assets폴더에서 데이터를 읽어옴 VertexShader.vs(읽어오는 파일)에서는 마지막에 한줄 띄어줘야 한다.

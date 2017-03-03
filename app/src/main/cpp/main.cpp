@@ -1,5 +1,5 @@
 #include "main.h"
-#include "AssetsManager.h"
+#include "manager/AssetsManager.h"
 
 static bool isCreated = false;
 

@@ -3,8 +3,8 @@
 //
 
 #include "GameSystem.h"
-#include "Rectangle.h"
-#include "Triangle.h"
+#include "shape/figure/Rectangle.h"
+#include "shape/figure/Triangle.h"
 
 void onSurfaceCreate()
 {

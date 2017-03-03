@@ -7,7 +7,7 @@
 
 #include <GLES2/gl2.h>
 #include "Shader.h"
-#include "logger.h"
+#include "../logger.h"
 
 class Shape {
 public:
