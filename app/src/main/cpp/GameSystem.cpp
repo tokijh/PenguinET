@@ -3,9 +3,8 @@
 //
 
 #include "GameSystem.h"
-#include "Triangle.h"
 #include "Rectangle.h"
-#include "Shader.h"
+#include "Triangle.h"
 
 void onSurfaceCreate()
 {
@@ -22,26 +21,25 @@ void onSurfaceChanged(int width, int height)
 void onSurfaceUpdated()
 {
 //    LOGI("nativeUpdateGame :: updated\n");
+    // 배경색을 매 프래임마다 점점 밝아지도록 무한루프
     static float grey;
     grey += 0.01f;
     if (grey > 1.0f) {
         grey = 0.0f;
     }
+    // 해당색으로 화면 전체를 초기화
     glClearColor(grey, grey, grey, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
-    GLuint _program = createProgram(gVertexShader, gFragmentShader);
-
-    Rectangle *rectangle = new Rectangle(_program);
+    // 사각형 그리기
+    Rectangle * rectangle = new Rectangle();
     rectangle->draw();
     rectangle->~Rectangle();
 
-
-    Triangle *triangle = new Triangle(_program);
+    // 삼각형 그리기
+    Triangle *triangle = new Triangle();
     triangle->draw();
     triangle->~Triangle();
-
-    glDeleteProgram(_program);
 }
 
 void onTouchEvent(int eventsCount, int **touchInfo)
