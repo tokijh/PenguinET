@@ -1,5 +1,7 @@
 package com.timejh.penguinet;
 
+import android.content.res.AssetManager;
+
 /**
  * Created by tokijh on 2017. 2. 28..
  */
@@ -10,7 +12,7 @@ public class OpenGLLib {
         System.loadLibrary("gamesystem");
     }
 
-    public static native void onCreated(SaveManager saveManager);
+    public static native void onCreated(SaveManager saveManager, AssetManager asset);
 
     public static native void onChanged(int w, int h);
 

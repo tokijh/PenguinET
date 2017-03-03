@@ -1,7 +1,8 @@
 #include "main.h"
+#include "AssetsManager.h"
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject obj, jobject storeManager);
+    JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject obj, jobject storeManager, jobject assetManager);
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onChanged(JNIEnv* env, jobject thiz, jint w, jint h);
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onTouch(JNIEnv* env, jobject thiz, jobjectArray touchEvents);
     JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_step(JNIEnv* env, jobject obj);
@@ -9,9 +10,10 @@ extern "C" {
     JNIEXPORT jboolean JNICALL Java_com_timejh_penguinet_OpenGLLib_stop(JNIEnv* env, jobject obj);
 };
 
-JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject thiz, jobject storeManager)
+JNIEXPORT void JNICALL Java_com_timejh_penguinet_OpenGLLib_onCreated(JNIEnv*  env, jobject thiz, jobject storeManager, jobject assetManager)
 {
     Save::init(env, storeManager);
+    AssetsManager::createAssetsManager(env, assetManager);
     onSurfaceCreate();
 }
 

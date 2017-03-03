@@ -42,7 +42,7 @@ public class GameView extends GLSurfaceView implements GLSurfaceView.Renderer {
     }
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        onCreated(saveManager);
+        onCreated(saveManager, getContext().getAssets());
     }
 
     @Override
