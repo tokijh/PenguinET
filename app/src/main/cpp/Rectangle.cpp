@@ -4,53 +4,51 @@
 
 #include "Rectangle.h"
 
-
-Rectangle::Rectangle(GLuint _program) {
-    setupGraphics(_program);
+Rectangle::Rectangle() : Shape()
+{
+    init("VertexShader.vs", "VertexShader.fs");
 }
 
 Rectangle::~Rectangle()
 {
-
+    destroy();
 }
 
-bool Rectangle::setupGraphics(GLuint _program) {
+const GLfloat vertices[] = {  -0.5f, 0.5f,
+                              0.5f, 0.5f,
+                              -0.5f, -0.5f,
+                              0.5f, -0.5f};
 
-    gProgram = _program;
-    if (!gProgram) {
+const GLfloat color[] = {1.0f, 1.0f, 0.0f, 0.0f};
+
+void Rectangle::init(const char *VS, const char *FS)
+{
+    _program = createProgram((*(&AssetsShaderManager::getInstance())).get(VS), (*(&AssetsShaderManager::getInstance())).get(FS));
+    if (!_program) {
         LOGE("Could not create program.");
-        return false;
+        return;
     }
-    gvPositionHandle = glGetAttribLocation(gProgram, "vPosition");
-    gvColorHandle = glGetUniformLocation(gProgram, "vColor");
-    return true;
+    _vPositionHandle = glGetAttribLocation(_program, "vPosition");
+    _vColorHandle = glGetUniformLocation(_program, "vColor");
 }
 
-const GLfloat gRectangleVertices[] = {  -0.5f, 0.5f,
-                                        0.5f, 0.5f,
-                                        -0.5f, -0.5f,
-                                        0.5f, -0.5f};
+void Rectangle::draw()
+{
+//    LOGI("Rectangle draw");
+    glUseProgram(_program);
 
-const GLfloat gRectangleColor[] = {1.0f, 1.0f, 0.0f, 0.0f};
+    glVertexAttribPointer(_vPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, vertices); // 2는 (-0.5f, 0,5f) 이렇게 2개를 읽는다. (x, y)
+    glEnableVertexAttribArray(_vPositionHandle);
 
-void Rectangle::renderFrame() {
+    glUniform4fv(_vColorHandle, 1, color);
 
-    glUseProgram(gProgram);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, sizeof(vertices) / sizeof(GLfloat) / 2); // glVertexAttribPointe의 2로 인해 위에서는 총 4개의 묶음으로 4가 나오도록 설정 (4각형이니까 4번 그린다?)
 
-    glVertexAttribPointer(gvPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, gRectangleVertices);
-    glEnableVertexAttribArray(gvPositionHandle);
-
-    glUniform4fv(gvColorHandle, 1, gRectangleColor);
-
-    LOGI("%d : %d", sizeof(gRectangleVertices) / sizeof(GLfloat), sizeof(gRectangleVertices) / sizeof(GLfloat) / 2);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, sizeof(gRectangleVertices) / sizeof(GLfloat) / 2);
-
-    /*TODO
-     * 나중에 이걸 재사용하면서 폐기할때만 불러오도록하자*/
-    glDeleteShader(gvColorHandle);
-    glDeleteShader(gvPositionHandle);
+    glDeleteShader(_vColorHandle);
+    glDeleteShader(_vPositionHandle);
 }
 
-void Rectangle::draw() {
-    renderFrame();
+void Rectangle::destroy()
+{
+    glDeleteProgram(_program);
 }

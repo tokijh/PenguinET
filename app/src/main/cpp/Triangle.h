@@ -6,26 +6,21 @@
 #define PENGUINET_TRIANGLE_H
 
 #include <GLES2/gl2.h>
-#include <stdlib.h>
-#include "logger.h"
-#include "Shader.h"
+#include "Shape.h"
+#include "AssetsShaderManager.h"
 
-class Triangle {
+
+class Triangle : public Shape {
 private:
-
-    GLuint gProgram;
-    GLuint gvPositionHandle;
-    GLuint gvColorHandle;
-
-
-    bool setupGraphics(GLuint _program);
-    void renderFrame();
-
+    void destroy();
 public:
-    Triangle(GLuint _program);
-    ~Triangle();
+    void init(const char *VS, const char *FS);
 
     void draw();
+
+    Triangle();
+
+    ~Triangle();
 };
 
 

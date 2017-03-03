@@ -6,26 +6,21 @@
 #define PENGUINET_RECTANGLE_H
 
 #include <GLES2/gl2.h>
-#include <stdlib.h>
-#include "logger.h"
-#include "Shader.h"
+#include "Shape.h"
+#include "AssetsShaderManager.h"
 
 
-class Rectangle {
+class Rectangle : public Shape {
 private:
-
-    GLuint gProgram;
-    GLuint gvPositionHandle;
-    GLuint gvColorHandle;
-
-    bool setupGraphics(GLuint _program);
-    void renderFrame();
-
+    void destroy();
 public:
-    Rectangle(GLuint _program);
-    ~Rectangle();
+    void init(const char *VS, const char *FS);
 
     void draw();
+
+    Rectangle();
+
+    ~Rectangle();
 };
 
 

@@ -5,19 +5,8 @@
 #ifndef PENGUINET_SHADER_H
 #define PENGUINET_SHADER_H
 
-static char gVertexShader[] =
-        "attribute vec4 vPosition;\n"
-                "void main() {\n"
-                "  gl_Position = vPosition;\n"
-                "  gl_PointSize = 100.0;\n"
-                "}\n";
-
-static char gFragmentShader[] =
-        "precision mediump float;\n"
-                "uniform vec4 vColor;\n"
-                "void main() {\n"
-                "  gl_FragColor = vColor;\n"
-                "}\n";
+#include <stdlib.h>
+#include "logger.h"
 
 static GLuint loadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);
@@ -61,22 +50,22 @@ static GLuint createProgram(const char* pVertexSource, const char* pFragmentSour
         glAttachShader(program, vertexShader);
         glAttachShader(program, pixelShader);
         glLinkProgram(program);
-//        GLint linkStatus = GL_FALSE;
-//        glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
-//        if (linkStatus != GL_TRUE) {
-//            GLint bufLength = 0;
-//            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
-//            if (bufLength) {
-//                char* buf = (char*) malloc(bufLength);
-//                if (buf) {
-//                    glGetProgramInfoLog(program, bufLength, NULL, buf);
-//                    LOGE("Could not link program:\n%s\n", buf);
-//                    free(buf);
-//                }
-//            }
-//            glDeleteProgram(program);
-//            program = 0;
-//        }
+        GLint linkStatus = GL_FALSE;
+        glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
+        if (linkStatus != GL_TRUE) {
+            GLint bufLength = 0;
+            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
+            if (bufLength) {
+                char* buf = (char*) malloc(bufLength);
+                if (buf) {
+                    glGetProgramInfoLog(program, bufLength, NULL, buf);
+                    LOGE("Could not link program:\n%s\n", buf);
+                    free(buf);
+                }
+            }
+            glDeleteProgram(program);
+            program = 0;
+        }
     }
     return program;
 }
