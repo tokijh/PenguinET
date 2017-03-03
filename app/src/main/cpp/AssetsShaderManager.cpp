@@ -34,8 +34,7 @@ char* AssetsShaderManager::get(const char *SHADER)
         findIterator = _shaderData->find(SHADER);
     }
 
-    std::string d = findIterator->second;
-    return "";
+    return (char *) findIterator->second.c_str();
 }
 
 AssetsShaderManager::AssetsShaderManager()
