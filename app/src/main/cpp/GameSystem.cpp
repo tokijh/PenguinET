@@ -5,6 +5,7 @@
 #include "GameSystem.h"
 #include "shape/figure/Rectangle.h"
 #include "shape/figure/Triangle.h"
+#include "shape/figure/Circle.h"
 
 void onSurfaceCreate()
 {
@@ -40,6 +41,11 @@ void onSurfaceUpdated()
     Triangle *triangle = new Triangle();
     triangle->draw();
     triangle->~Triangle();
+
+    // 원 그리기
+    Circle *circle = new Circle();
+    circle->draw();
+    circle->~Circle();
 }
 
 void onTouchEvent(int eventsCount, int **touchInfo)

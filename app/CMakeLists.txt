@@ -24,6 +24,7 @@ add_library(gamesystem SHARED
 
             src/main/cpp/shape/figure/Triangle.cpp
             src/main/cpp/shape/figure/Rectangle.cpp
+            src/main/cpp/shape/figure/Circle.cpp
             )
 
 target_link_libraries(gamesystem
