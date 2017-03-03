@@ -18,6 +18,8 @@ add_library(gamesystem SHARED
             src/main/cpp/main.cpp
             src/main/cpp/GameSystem.cpp
             src/main/cpp/Save.cpp
+            src/main/cpp/Triangle.cpp
+            src/main/cpp/Rectangle.cpp
             )
 
 target_link_libraries(gamesystem

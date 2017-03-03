@@ -3,6 +3,9 @@
 //
 
 #include "GameSystem.h"
+#include "Triangle.h"
+#include "Rectangle.h"
+#include "Shader.h"
 
 void onSurfaceCreate()
 {
@@ -19,8 +22,26 @@ void onSurfaceChanged(int width, int height)
 void onSurfaceUpdated()
 {
 //    LOGI("nativeUpdateGame :: updated\n");
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    static float grey;
+    grey += 0.01f;
+    if (grey > 1.0f) {
+        grey = 0.0f;
+    }
+    glClearColor(grey, grey, grey, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+    GLuint _program = createProgram(gVertexShader, gFragmentShader);
+
+    Rectangle *rectangle = new Rectangle(_program);
+    rectangle->draw();
+    rectangle->~Rectangle();
+
+
+    Triangle *triangle = new Triangle(_program);
+    triangle->draw();
+    triangle->~Triangle();
+
+    glDeleteProgram(_program);
 }
 
 void onTouchEvent(int eventsCount, int **touchInfo)
