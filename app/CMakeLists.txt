@@ -17,11 +17,13 @@ endif (${ANDROID_PLATFORM_LEVEL} LESS 11)
 add_library(gamesystem SHARED
             src/main/cpp/main.cpp
             src/main/cpp/GameSystem.cpp
-            src/main/cpp/Save.cpp
-            src/main/cpp/Triangle.cpp
-            src/main/cpp/Rectangle.cpp
-            src/main/cpp/AssetsManager.cpp
-            src/main/cpp/AssetsShaderManager.cpp
+
+            src/main/cpp/manager/Save.cpp
+            src/main/cpp/manager/AssetsManager.cpp
+            src/main/cpp/manager/AssetsShaderManager.cpp
+
+            src/main/cpp/shape/figure/Triangle.cpp
+            src/main/cpp/shape/figure/Rectangle.cpp
             )
 
 target_link_libraries(gamesystem
