@@ -16,17 +16,26 @@
  * assets폴더에서 데이터를 읽어옴 VertexShader.vs(읽어오는 파일)에서는 마지막에 한줄 띄어줘야 한다.
  *
  * Test 방법
-    char *a = AssetsManager::readFile("VertexShader.vs");
+    char *a = (*(&AssetsManager::getInstance())).readFile("VertexShader.vs");
     LOGI("%s :: %s", "VertexShader.vs", a);
  */
 class AssetsManager {
 private:
-    static AAssetManager *_aAssetManager;
+    static AssetsManager *_assetsManager;
+
+    AAssetManager *_aAssetManager = NULL;
+
+    AssetsManager();
+    ~AssetsManager();
 
 public:
-    static void createAssetsManager(JNIEnv * env, jobject assetManager);
+    static void createAssetsManager(JNIEnv *env, jobject assetManager);
 
-    static char *readFile(const char* filename);
+    static AssetsManager &getInstance();
+
+    void destroy();
+
+    char *readFile(const char *filename);
 };
 
 
