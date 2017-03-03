@@ -66,15 +66,14 @@ char* AssetsManager::readFile(const char* filename)
 
     AAsset_close(asset);
 
-    LOGI("%s :: %s\n", filename, buf);
-
+    // 읽어올때 마지막에 이상한 값이 추가가 되는 경우가 있어 이를 방지하기 위해 맨 마지막의 '}'까지만 잘라버린다.
     for (int i=fileSize;i>0;i--) {
         if (buf[i] == '}') {
             buf[i + 1] = '\0';
             break;
         }
     }
-    LOGI("%s :: %s\n", filename, buf);
+    LOGI("AssetsManager : %s is loaded. content -> %s\n", filename, buf);
 
     return buf;
 }
